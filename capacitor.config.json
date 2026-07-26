@@ -1,0 +1,15 @@
+{
+  "appId": "fr.calebassecalvasse.app",
+  "appName": "CalebasseCalvasse",
+  "webDir": "www",
+  "server": {
+    "url": "https://calebassecalvasse.fr",
+    "androidScheme": "https"
+  },
+  "plugins": {
+    "LocalNotifications": {
+      "smallIcon": "ic_stat_calebasse",
+      "iconColor": "#2447D6"
+    }
+  }
+}

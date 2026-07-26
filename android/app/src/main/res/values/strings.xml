@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">CalebasseCalvasse</string>
+    <string name="title_activity_main">CalebasseCalvasse</string>
+    <string name="package_name">fr.calebassecalvasse.app</string>
+    <string name="custom_url_scheme">fr.calebassecalvasse.app</string>
+</resources>

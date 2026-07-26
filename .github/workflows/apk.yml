@@ -1,0 +1,55 @@
+# Construit l'APK signé et le publie en release GitHub — le lien
+# releases/latest/download/calebassecalvasse.apk pointe toujours vers la
+# dernière version. Déclenchement : manuel ou push sur main.
+name: APK
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+
+jobs:
+  construire:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 21
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Dépendances Capacitor
+        run: npm ci
+
+      - name: Synchroniser la configuration native
+        run: npx cap sync android
+
+      - name: Clé de signature
+        run: echo "$ANDROID_KEYSTORE" | base64 -d > "$RUNNER_TEMP/calebasse.keystore"
+        env:
+          ANDROID_KEYSTORE: ${{ secrets.ANDROID_KEYSTORE }}
+
+      - name: Construire l'APK signé
+        working-directory: android
+        run: chmod +x gradlew && ./gradlew assembleRelease --no-daemon
+        env:
+          ANDROID_KEYSTORE_FILE: ${{ runner.temp }}/calebasse.keystore
+          ANDROID_KEYSTORE_PASSWORD: ${{ secrets.ANDROID_KEYSTORE_PASSWORD }}
+          ANDROID_KEY_ALIAS: ${{ secrets.ANDROID_KEY_ALIAS }}
+
+      - name: Publier la release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          cp android/app/build/outputs/apk/release/app-release.apk calebassecalvasse.apk
+          gh release delete derniere --yes --cleanup-tag || true
+          gh release create derniere calebassecalvasse.apk \
+            --title "CalebasseCalvasse — dernière version" \
+            --notes "APK signé, construit automatiquement."
