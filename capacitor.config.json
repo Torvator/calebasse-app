@@ -10,6 +10,10 @@
     "LocalNotifications": {
       "smallIcon": "ic_stat_calebasse",
       "iconColor": "#2447D6"
+    },
+    "FirebaseAuthentication": {
+      "skipNativeAuth": false,
+      "providers": ["google.com"]
     }
   }
 }

@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "623578030286",
+    "project_id": "calebassecalvasse-14959",
+    "storage_bucket": "calebassecalvasse-14959.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:623578030286:android:8dca6232b232552389b09f",
+        "android_client_info": {
+          "package_name": "fr.calebassecalvasse.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "623578030286-5vm9f6l25ugr815n1jqspo4s32bd7hv3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCkxTZJ6O_Xpo4zWaXxyZ0VrgPPYe-YNK0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "623578030286-5vm9f6l25ugr815n1jqspo4s32bd7hv3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
