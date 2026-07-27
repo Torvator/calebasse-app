@@ -11,6 +11,12 @@ on:
 permissions:
   contents: write
 
+# Un seul build à la fois : deux pushs rapprochés publiaient sinon l'APK
+# le plus ancien si son run finissait en dernier.
+concurrency:
+  group: apk
+  cancel-in-progress: true
+
 jobs:
   construire:
     runs-on: ubuntu-latest
@@ -49,7 +55,10 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: |
           cp android/app/build/outputs/apk/release/app-release.apk calebassecalvasse.apk
-          gh release delete derniere --yes --cleanup-tag || true
-          gh release create derniere calebassecalvasse.apk \
+          # La release `derniere` est créée une seule fois puis mise à jour
+          # sur place : supprimer/recréer laissait le lien stable du README
+          # en 404 pendant tout le ré-upload.
+          gh release view derniere >/dev/null 2>&1 || gh release create derniere \
             --title "CalebasseCalvasse — dernière version" \
-            --notes "APK signé, construit automatiquement."
+            --notes "APK signé, construit automatiquement à chaque mise à jour."
+          gh release upload derniere calebassecalvasse.apk --clobber
