@@ -13,4 +13,8 @@ ext {
     androidxJunitVersion = '1.1.5'
     androidxEspressoCoreVersion = '3.5.1'
     cordovaAndroidVersion = '10.1.1'
+    // Plugin FirebaseAuthentication : embarque la bibliothèque native de
+    // connexion Google (sans ce drapeau, le fournisseur google.com déclaré
+    // dans capacitor.config.json fait planter l'appli au démarrage).
+    rgcfaIncludeGoogle = true
 }
