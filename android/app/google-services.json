@@ -14,6 +14,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "623578030286-ag7qa39mlekrbmmhm6b4hh9rmc0sn9uc.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "fr.calebassecalvasse.app",
+            "certificate_hash": "246a3c6673f2adb184f7fede3e9ad64b7d508dff"
+          }
+        },
+        {
           "client_id": "623578030286-5vm9f6l25ugr815n1jqspo4s32bd7hv3.apps.googleusercontent.com",
           "client_type": 3
         }
